@@ -5,20 +5,22 @@ define(function (require) {
 		this.p1 = p1;
 		this.p2 = p2;
 
-		this.drawLine = function (r, g, b, a) {
+		this.draw = function (rgba) {
 			var dy = this.p2.y - this.p1.y;
 			var dx = this.p2.x - this.p1.x;
 			var x_inc = 1;
 			var y_inc = 1;
 			var line_x = this.p1.x;
 			var line_y = this.p1.y;
-			ctx.fillStyle = "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+			ctx.fillStyle = rgba;
 
 			if (dy < 0) {
 				y_inc = -1;
+				dy = -dy;
 			}
 			if (dx < 0) {
 				x_inc = -1;
+				dx = -dx;
 			}
 
 			if (dx > dy) {
@@ -28,7 +30,7 @@ define(function (require) {
 
 				    if (error_test >= 0) {
 				    	error_test -= dx * 2;
-				    	line_y++;
+				    	line_y += y_inc;
 				    }
 
 				    error_test += dy * 2;
@@ -41,7 +43,7 @@ define(function (require) {
 
 				    if (error_test >= 0) {
 				    	error_test -= dy * 2;
-				    	line_x++;
+				    	line_x += x_inc;
 				    }
 
 				    error_test += dx * 2;
