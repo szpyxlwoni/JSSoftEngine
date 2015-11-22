@@ -15,5 +15,23 @@ define(function () {
 			}
 			return result;
 		}
+
+		this.transpose = function () {
+			var newM = [[]];
+			for (var row = 0; row < 3; row++) {
+				for (var col = 0; col < 3; col++) {
+					newM[col][row] = this.M[row][col];
+				}
+			}
+			return newM;
+		}
+
+		this.zero = function () {
+			for (var row = 0; row < 3; row++) {
+				for (var col = 0; col < 3; col++) {
+					this.M[row][col] = 0;
+				}
+			}
+		}
 	}
 })
